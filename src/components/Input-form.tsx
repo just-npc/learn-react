@@ -1,7 +1,7 @@
 export default function InputForm() {
   return (
     <>
-      <section class="card">
+      <section className="card">
         <h2>Tambah Buku Baru</h2>
         <form id="bookForm" data-testid="bookForm">
           <div>
@@ -20,7 +20,7 @@ export default function InputForm() {
             <label for="bookFormIsComplete">Selesai dibaca</label>
             <input id="bookFormIsComplete" type="checkbox" data-testid="bookFormIsCompleteCheckbox" />
           </div>
-          <button class="submit-btn" id="bookFormSubmit" type="submit" data-testid="bookFormSubmitButton">
+          <button className="submit-btn" id="bookFormSubmit" type="submit" data-testid="bookFormSubmitButton">
             Masukkan Buku ke rak
           </button>
         </form>

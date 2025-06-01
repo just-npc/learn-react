@@ -1,3 +1,5 @@
+import SearchResult from "./Search-result";
+
 export default function SearchForm() {
   return (
     <>
@@ -11,6 +13,8 @@ export default function SearchForm() {
           </button>
         </form>
       </section>
+
+      <SearchResult />
     </>
   )
 }
