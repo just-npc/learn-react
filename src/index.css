@@ -1,68 +1,182 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system;
 }
 
 body {
-  margin: 0;
+  text-align: center;
+}
+
+header > h1 {
+  margin-top: 1.5rem;
+}
+
+section.card:nth-of-type(5) {
+  background: #a7d8d8;
+  margin: 10% auto;
+}
+
+section.card:nth-of-type(4) {
+  background: #ffc0cb;
+  margin: 10% auto;
+}
+
+section.card:nth-of-type(3) {
+  padding: 0.5rem;
+  /* margin: 10% auto; */
+}
+
+section.card:nth-of-type(1) {
+  margin: 10% auto;
+}
+
+.card,
+.search-card {
+  border: 3px solid black;
+  padding: 2rem;
+  width: 300px;
+  /* margin: 10% auto; */
+  translate: -6px -6px;
+  box-shadow: 10px 10px 0 black;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover,
+.search-card:hover {
+  translate: -6px;
+}
+
+.card input,
+.card button,
+.modal-content input,
+.modal-content button,
+.search-card input,
+.search-card button {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border: 2px solid black;
+  font-size: 1rem;
+}
+
+#bookFormIsComplete {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: auto;
+}
+
+section:nth-of-type(2) input {
+  display: block;
+  width: 30%;
+  padding: 0.3rem;
+  border: 2px solid black;
+  font-size: 1rem;
+}
+
+section:nth-of-type(2) form {
+  justify-content: center;
+  align-items: center;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  gap: 10px;
+  font-size: 1rem;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+section:nth-of-type(2) button {
+  padding: 0.3rem;
+  width: 4rem;
+  border: 2px solid black;
+  font-size: 1rem;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.card button,
+.modal-content button {
+  translate: -6px -6px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.card button:hover,
+.modal-content button:hover {
+  translate: -6px;
+}
+
+.book-item,
+.result-card {
+  border: 2px solid black;
+  padding: 0.7rem;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.result-card {
+  border: none;
+  /* padding: 0.7rem;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem; */
+}
+
+.complete-btn {
+  background: #b5d2ad;
+  display: block;
+}
+
+.delete-btn {
+  background: #ff6b8b;
+}
+
+.edit-btn {
+  background: #daf5f0;
+}
+
+button.submit-btn {
+  background: #fdfd96;
+  margin-top: 1rem;
+}
+
+.search-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* modal style */
+.modal {
+  /* display: inline-block; */
+  /* margin: auto; */
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-content {
+  display: flex;
+  margin: 8rem auto;
+  background-color: white;
+  width: fit-content;
+  padding: 30px;
+  border-radius: 10px;
 }
