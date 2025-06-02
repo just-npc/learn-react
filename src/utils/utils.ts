@@ -47,9 +47,4 @@ function loadDataFromStorage(): void {
   }
 }
 
-export default {
-  saveData,
-  generateId,
-  generateBookObject,
-  loadDataFromStorage,
-};
+export { saveData, generateId, generateBookObject, loadDataFromStorage };
