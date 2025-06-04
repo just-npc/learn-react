@@ -1,13 +1,13 @@
-// import type { ComponentChildren } from 'preact'
-
 import type { BookType } from "../utils/utils";
 
 interface CardProps {
   // children: ComponentChildren;
   data: BookType[];
+  handleChanges: (id: number) => void;
+  // onSubmit: (book: BookType) => void;
 }
 
-export default function BookCard({ data }: CardProps) {
+export default function BookCard({ data, handleChanges }: CardProps) {
   const completeBook = data.filter((book) => book.isComplete);
   const incompleteBook = data.filter((book) => !book.isComplete);
 
@@ -25,7 +25,7 @@ export default function BookCard({ data }: CardProps) {
                 <p data-testid="bookItemAuthor">Penulis: {book.author}</p>
                 <p data-testid="bookItemYear">Tahun: {book.year}</p>
                 <div>
-                  <button className="complete-btn" data-testid="bookItemIsCompleteButton">Selesai dibaca</button>
+                  <button onClick={() => handleChanges(book.id)} className="complete-btn" data-testid="bookItemIsCompleteButton">Tandai {book.isComplete ? "belum selesai" : " selesai dibaca"}</button>
                   <button className="delete-btn" data-testid="bookItemDeleteButton">Hapus Buku</button>
                   <button className="edit-btn" data-testid="bookItemEditButton">Edit Buku</button>
                 </div>
@@ -49,7 +49,7 @@ export default function BookCard({ data }: CardProps) {
                 <p data-testid="bookItemAuthor">Penulis: {book.author}</p>
                 <p data-testid="bookItemYear">Tahun: {book.year}</p>
                 <div>
-                  <button className="complete-btn" data-testid="bookItemIsCompleteButton">Belum selesai dibaca</button>
+                  <button onClick={() => handleChanges(book.id)} className="complete-btn" data-testid="bookItemIsCompleteButton">Tandai {book.isComplete ? "belum selesai" : " selesai dibaca"}</button>
                   <button className="delete-btn" data-testid="bookItemDeleteButton">Hapus Buku</button>
                   <button className="edit-btn" data-testid="bookItemEditButton">Edit Buku</button>
                 </div>

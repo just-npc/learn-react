@@ -23,6 +23,11 @@ export default function Bookshelf() {
     setBooks([...books, book]);
   }
 
+  const handleChange = (id: number) => {
+    const updatedBook = books.map((book) => book.id === id ? { ...book, isComplete: !book.isComplete } : book);
+    setBooks(updatedBook);
+  }
+
   return (
     <>
       <header>
@@ -33,7 +38,7 @@ export default function Bookshelf() {
         <InputForm onSubmit={handleSubmit} />
         <SearchForm />
 
-        <BookCard data={books} />
+        <BookCard data={books} handleChanges={handleChange} />
 
       </main>
     </>
