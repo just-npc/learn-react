@@ -4,10 +4,11 @@ interface CardProps {
   // children: ComponentChildren;
   data: BookType[];
   handleChanges: (id: number) => void;
+  handleDelete: (id: number) => void;
   // onSubmit: (book: BookType) => void;
 }
 
-export default function BookCard({ data, handleChanges }: CardProps) {
+export default function BookCard({ data, handleChanges, handleDelete }: CardProps) {
   const completeBook = data.filter((book) => book.isComplete);
   const incompleteBook = data.filter((book) => !book.isComplete);
 
@@ -26,7 +27,7 @@ export default function BookCard({ data, handleChanges }: CardProps) {
                 <p data-testid="bookItemYear">Tahun: {book.year}</p>
                 <div>
                   <button onClick={() => handleChanges(book.id)} className="complete-btn" data-testid="bookItemIsCompleteButton">Tandai {book.isComplete ? "belum selesai" : " selesai dibaca"}</button>
-                  <button className="delete-btn" data-testid="bookItemDeleteButton">Hapus Buku</button>
+                  <button onClick={() => handleDelete(book.id)} className="delete-btn" data-testid="bookItemDeleteButton">Hapus Buku</button>
                   <button className="edit-btn" data-testid="bookItemEditButton">Edit Buku</button>
                 </div>
               </div>
@@ -50,7 +51,7 @@ export default function BookCard({ data, handleChanges }: CardProps) {
                 <p data-testid="bookItemYear">Tahun: {book.year}</p>
                 <div>
                   <button onClick={() => handleChanges(book.id)} className="complete-btn" data-testid="bookItemIsCompleteButton">Tandai {book.isComplete ? "belum selesai" : " selesai dibaca"}</button>
-                  <button className="delete-btn" data-testid="bookItemDeleteButton">Hapus Buku</button>
+                  <button onClick={() => handleDelete(book.id)} className="delete-btn" data-testid="bookItemDeleteButton">Hapus Buku</button>
                   <button className="edit-btn" data-testid="bookItemEditButton">Edit Buku</button>
                 </div>
               </div>

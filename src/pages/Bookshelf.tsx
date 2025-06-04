@@ -28,6 +28,11 @@ export default function Bookshelf() {
     setBooks(updatedBook);
   }
 
+  const handleDelete = (id: number) => {
+    const filtereddBook = books.filter((book) => book.id !== id);
+    setBooks(filtereddBook);
+  }
+
   return (
     <>
       <header>
@@ -38,7 +43,7 @@ export default function Bookshelf() {
         <InputForm onSubmit={handleSubmit} />
         <SearchForm />
 
-        <BookCard data={books} handleChanges={handleChange} />
+        <BookCard data={books} handleChanges={handleChange} handleDelete={handleDelete} />
 
       </main>
     </>
