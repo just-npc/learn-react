@@ -3,9 +3,11 @@ import BookCard from "../components/Book-card.tsx";
 import InputForm from "../components/Input-form.tsx"
 import SearchForm from "../components/Search-form.tsx";
 import { STORAGE_KEY, type BookType } from "../utils/utils.ts";
+import Modal from "../components/Modals.tsx";
 
 export default function Bookshelf() {
   const [books, setBooks] = useState<BookType[]>([]);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     const data = localStorage.getItem(STORAGE_KEY);
@@ -33,6 +35,11 @@ export default function Bookshelf() {
     setBooks(filtereddBook);
   }
 
+  const handleEdit = (value: boolean) => {
+    setModal(value)
+    console.log(value);
+  }
+
   return (
     <>
       <header>
@@ -43,7 +50,9 @@ export default function Bookshelf() {
         <InputForm onSubmit={handleSubmit} />
         <SearchForm />
 
-        <BookCard data={books} handleChanges={handleChange} handleDelete={handleDelete} />
+        <BookCard data={books} handleChanges={handleChange} handleDelete={handleDelete} openModal={handleEdit} />
+
+        {modal ? <Modal /> : ""}
 
       </main>
     </>

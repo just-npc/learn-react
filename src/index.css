@@ -163,7 +163,7 @@ button.submit-btn {
 .modal {
   /* display: inline-block; */
   /* margin: auto; */
-  display: none;
+  /* display: none; */
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
