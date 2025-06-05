@@ -6,6 +6,13 @@ interface BookType {
   isComplete: boolean;
 }
 
+interface BookForm {
+  title: string;
+  author: string;
+  year: number;
+  isComplete: boolean;
+}
+
 // const SAVED_EVENT: string = "saved-book";
 const STORAGE_KEY: string = "BOOKSHELF_APPS";
 
@@ -18,7 +25,7 @@ function generateBookObject<T extends BookType>(book: T): BookType {
 }
 
 export {
-  // SAVED_EVENT,
+  type BookForm,
   type BookType,
   STORAGE_KEY,
   generateId,
