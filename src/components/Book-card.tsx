@@ -5,7 +5,7 @@ interface CardProps {
   data: BookType[];
   handleChanges: (id: number) => void;
   handleDelete: (id: number) => void;
-  openModal: (value: boolean) => void
+  openModal: (id: number) => void
 }
 
 export default function BookCard({ data, handleChanges, handleDelete, openModal }: CardProps) {
@@ -28,7 +28,7 @@ export default function BookCard({ data, handleChanges, handleDelete, openModal 
                 <div>
                   <button onClick={() => handleChanges(book.id)} className="complete-btn" data-testid="bookItemIsCompleteButton">Tandai {book.isComplete ? "belum selesai" : " selesai dibaca"}</button>
                   <button onClick={() => handleDelete(book.id)} className="delete-btn" data-testid="bookItemDeleteButton">Hapus Buku</button>
-                  <button onClick={() => openModal(true)} className="edit-btn" data-testid="bookItemEditButton">Edit Buku</button>
+                  <button onClick={() => openModal(book.id)} className="edit-btn" data-testid="bookItemEditButton">Edit Buku</button>
                 </div>
               </div>
             )
@@ -52,7 +52,7 @@ export default function BookCard({ data, handleChanges, handleDelete, openModal 
                 <div>
                   <button onClick={() => handleChanges(book.id)} className="complete-btn" data-testid="bookItemIsCompleteButton">Tandai {book.isComplete ? "belum selesai" : " selesai dibaca"}</button>
                   <button onClick={() => handleDelete(book.id)} className="delete-btn" data-testid="bookItemDeleteButton">Hapus Buku</button>
-                  <button onClick={() => openModal(true)} className="edit-btn" data-testid="bookItemEditButton">Edit Buku</button>
+                  <button onClick={() => openModal(book.id)} className="edit-btn" data-testid="bookItemEditButton">Edit Buku</button>
                 </div>
               </div>
             )
