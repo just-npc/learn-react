@@ -1,37 +1,46 @@
 import type React from "preact/compat";
 import { generateBookObject, generateId, type BookType } from "../utils/utils";
-import { useState } from "preact/hooks";
+interface BokFormState {
+  bookTitle: string;
+  setBookTitle: React.Dispatch<React.SetStateAction<string>>;
+  bookAuthor: string;
+  setBookAuthor: React.Dispatch<React.SetStateAction<string>>;
+  bookYear: string;
+  setBookYear: React.Dispatch<React.SetStateAction<string>>;
+  bookIsComplete: boolean;
+  setBookIsComplete: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 
 interface InputFormProps {
   onSubmit: (book: BookType) => void;
+  formState: BokFormState;
+  onReset: () => void;
 }
 
-export default function InputForm({ onSubmit }: InputFormProps) {
-  const [bookTitle, setBookTitle] = useState("");
-  const [bookAuthor, setBookAuthor] = useState("");
-  const [bookYear, setBookYear] = useState("");
-  const [bookIsComplete, setBookIsComplete] = useState(false);
+export default function InputForm({ onSubmit, onReset, formState }: InputFormProps) {
+  const { bookTitle, setBookTitle, bookAuthor, setBookAuthor, bookYear, setBookYear, bookIsComplete, setBookIsComplete } = formState;
 
-  const resetForm = () => {
-    setBookTitle("");
-    setBookAuthor("");
-    setBookYear("");
-    setBookIsComplete(false);
-  }
+  // const [bookTitle, setBookTitle] = useState("");
+  // const [bookAuthor, setBookAuthor] = useState("");
+  // const [bookYear, setBookYear] = useState("");
+  // const [bookIsComplete, setBookIsComplete] = useState(false);
+
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // masih belum selesai
     const id: number = generateId();
+    const year = parseInt(bookYear)
     const title: string = bookTitle;
     const author: string = bookAuthor;
-    const year: number = parseInt(bookYear);
     const isComplete = bookIsComplete;
 
     const bookObject = generateBookObject({ id, title, author, year, isComplete });
     console.log(bookObject);
     onSubmit(bookObject);
-    resetForm();
+    onReset();
   }
 
   return (

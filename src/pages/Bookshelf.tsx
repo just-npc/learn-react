@@ -6,8 +6,17 @@ import { STORAGE_KEY, type BookType } from "../utils/utils.ts";
 import Modal from "../components/Modals.tsx";
 
 export default function Bookshelf() {
+  let bookId;
   const [books, setBooks] = useState<BookType[]>([]);
   const [modal, setModal] = useState(false);
+  const [editBookId, setEditBookId] = useState<number | null>(null);
+
+
+  const [bookTitle, setBookTitle] = useState("");
+  const [bookAuthor, setBookAuthor] = useState("");
+  const [bookYear, setBookYear] = useState("");
+  const [bookIsComplete, setBookIsComplete] = useState(false);
+  // const [editableBook, setEditableBook] = useState<BookType | null>(null);
 
   useEffect(() => {
     const data = localStorage.getItem(STORAGE_KEY);
@@ -35,10 +44,28 @@ export default function Bookshelf() {
     setBooks(filtereddBook);
   }
 
-  const handleEdit = (value: boolean) => {
-    setModal(value)
-    console.log(value);
+  const modalOpen = (id: number) => {
+    setModal(true)
+    bookId = id;
+    setEditBookId(bookId)
   }
+
+  console.log(editBookId);
+
+  const resetForm = () => {
+    setBookTitle("");
+    setBookAuthor("");
+    setBookYear("");
+    setBookIsComplete(false);
+  }
+
+  const handleEditSubmit = (editedBook: BookType) => {
+    setBooks((prevBooks) =>
+      prevBooks.map((book) =>
+        book.id === editedBook.id ? editedBook : book
+      )
+    );
+  };
 
   return (
     <>
@@ -47,14 +74,36 @@ export default function Bookshelf() {
       </header>
 
       <main>
-        <InputForm onSubmit={handleSubmit} />
+        <InputForm onSubmit={handleSubmit} onReset={resetForm} formState={{
+          bookTitle: bookTitle,
+          setBookTitle: setBookTitle,
+          bookAuthor: bookAuthor,
+          setBookAuthor: setBookAuthor,
+          bookYear: bookYear,
+          setBookYear: setBookYear,
+          bookIsComplete: bookIsComplete,
+          setBookIsComplete: setBookIsComplete
+        }} />
         <SearchForm />
 
-        <BookCard data={books} handleChanges={handleChange} handleDelete={handleDelete} openModal={handleEdit} />
+        <BookCard data={books} handleChanges={handleChange} handleDelete={handleDelete} openModal={modalOpen} />
 
-        {modal ? <Modal /> : ""}
+        {modal ? <Modal onReset={resetForm} onEditSubmit={handleEditSubmit} data={books} bookState={{
+          editId: editBookId,
+          setEditBookId: setEditBookId,
+          bookTitle: bookTitle,
+          setBookTitle: setBookTitle,
+          bookAuthor: bookAuthor,
+          setBookAuthor: setBookAuthor,
+          bookYear: bookYear,
+          setBookYear: setBookYear,
+          bookIsComplete: bookIsComplete,
+          setBookIsComplete: setBookIsComplete,
+          setModal: setModal
+        }} /> : ""}
 
       </main>
     </>
   );
 }
+// booklist={books} setBookList={setBooks}
